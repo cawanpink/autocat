@@ -1,4 +1,5 @@
 import os
+import re
 
 class MetaScore(object):
     def __init__(self):
@@ -9,11 +10,9 @@ class MetaScore(object):
 
         search_terms = open('industries/automotive/search_terms.csv')
 #        search_terms = open(base_dir + '/industries/automotive/search_terms.csv')
-        p = 0
         terms = []
         for term in search_terms:
             terms.append(term)
-            p = p+1
             
         meta_keywords = open('results/automotive/meta.csv')
         count = 0
@@ -22,7 +21,7 @@ class MetaScore(object):
 
         for word in words:
             for term in terms:
-                if term == word:
+                if re.search(term, word) is not None:
                     count = count + 1
 
         meta_score = int(count) / float(len(terms))
