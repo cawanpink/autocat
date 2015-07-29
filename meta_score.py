@@ -21,10 +21,13 @@ class MetaScore(object):
 
         for word in words:
             for term in terms:
+#                print term
                 term = term.lower()
                 word = word.lower()
-                if re.search(term, word) is not None:
+                if re.search(str(term), str(word), re.I) is not None:
+                    print 'term: ' + term, 'word: '+ word
                     count = count + 1
 
+        
         meta_score = int(count) / float(len(terms))
         return  float(meta_score)
