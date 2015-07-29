@@ -21,6 +21,8 @@ class MetaScore(object):
 
         for word in words:
             for term in terms:
+                term = term.lower()
+                word = word.lower()
                 if re.search(term, word) is not None:
                     count = count + 1
 
