@@ -21,10 +21,7 @@ class ImaggaClient(object):
 
         try:
             tagging_api = Imagga.TaggingApi(api_client)
-            # return TaggingResponse (model)
-            response = tagging_api.tagging(url=url, content='ssss')
-
-            pprint(response)
+            response = tagging_api.tagging(url=url)
             return self.format_response(response)
 
         except urllib2.HTTPError, e:
@@ -38,11 +35,16 @@ class ImaggaClient(object):
 
     @staticmethod
     def format_response(response):
-        new_tags = []
-        for items in response['results'][0]['tags']:
-            if items['confidence'] > 30:
-                new_tags.append(items)  
-        response['results'][0].update({'tags': new_tags})
+#        new_tags = []
+#        print response['results']
+#        for items in response['results'][0]['tags']:
+#            if items['confidence'] > 5:
+#                new_tags.append(items)  
+#        response['results'][0].update({'tags': new_tags})
         return response
 
 
+#url = 'http://www.toyota.com/content/common/img/jellies/global-nav/2015/camry/base.png'
+#i = ImaggaClient()
+#r = i.get_results(url)
+#print r.results[0].tags
